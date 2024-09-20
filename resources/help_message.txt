@@ -1,0 +1,11 @@
+```
+Need help using TBD?
+
+Here are some useful commands.
+
+help - Display this message
+rcon - Remote console to server
+status - Get minecraft server status
+
+If the server is stopped TBD will appear as idle!
+```

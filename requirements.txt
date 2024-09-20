@@ -1,0 +1,8 @@
+discord.py
+google-auth
+pre-commit
+mcrcon
+python-dotenv
+requests
+discord.py[voice]>=2.3.2
+pytubefix>=5.6.3
