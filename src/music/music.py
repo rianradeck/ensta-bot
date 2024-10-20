@@ -42,6 +42,7 @@ QUEUE_TEXT = r"""
 def download_song(song: pytubefix.YouTube, filename):
     audiostreams = song.streams.filter(only_audio=True, mime_type="audio/mp4")
     audiostreams[0].download(filename=filename)
+    print("Downloaded", song.title)
 
 
 def add_to_queue(song: pytubefix.YouTube):
@@ -150,7 +151,7 @@ async def move_queue(ctx: commands.Context, remove=True):
 
     refresh_downloads()
 
-    if remove:
+    if remove and len(song_queue):
         song, song_id = song_queue[0]
         song_path = (
             root_path / "resources" / "downloaded_songs" / f"{song_id}.mp4"
@@ -175,5 +176,6 @@ async def move_queue(ctx: commands.Context, remove=True):
 
     else:
         await ctx.send("Queue has reached its end, see you soon :D")
-        await ctx.voice_client.disconnect()
+        if ctx.voice_client is not None:
+            await ctx.voice_client.disconnect()
         delete_all_downloaded_songs()

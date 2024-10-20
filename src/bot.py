@@ -10,6 +10,7 @@ from dotenv import load_dotenv
 # from minecraft import minecraft
 from music import music
 from net_info import net_info
+import utils
 
 load_dotenv()
 
@@ -38,7 +39,7 @@ async def on_ready():
         if member.name in server_admins_names:
             server_admins.append(member)
 
-    print("Admins:", server_admins)
+    print("Admins:", [admin.name for admin in server_admins])
 
     if guild.name == GUILD:
         print(
@@ -48,6 +49,7 @@ async def on_ready():
 
     # tasks.load_tasks(client)
     # minecraft.load_minecraft(client, server_admins)
+    utils.load(client)
     music.load_music(client)
     net_info.load_net_info(client)
 

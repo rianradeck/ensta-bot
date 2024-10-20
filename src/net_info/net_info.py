@@ -31,11 +31,11 @@ async def ip(ctx: commands.Context, *args):
                     subprocess.Popen(
                         ["ipconfig"], stdout=subprocess.PIPE
                     ).communicate()[0]
-                ).decode("utf-8")
+                ).decode("latin1")
                 info_start = ipconfig.find("Wi-Fi")
                 info_end = info_start
                 n_collons = 0
-                while n_collons < 12:
+                while n_collons < 12 and info_end < len(ipconfig):
                     if ipconfig[info_end] == ":":
                         n_collons += 1
                     info_end += 1
